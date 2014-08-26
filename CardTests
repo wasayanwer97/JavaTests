@@ -1,0 +1,49 @@
+import java.util.*;
+
+public class JavaTests {
+
+    public static void main(String[] args) {
+        // TODO code application logic here
+        String[] Suit = {"Spades","Clubs","Diamonds","Hearts"};
+        String[] Rank = {"2","3","4","5","6","7","8","9","Jack","Queen","King","Ace"};
+        String[][] Deck = new String[4][13];
+        
+        for (int i = 0; i < Suit.length; i++){
+            for (int in = 0; in < Rank.length; in++){
+                System.out.println(Rank[in] + " of " + Suit[i]);
+                Deck[i][in] = Rank[in] + " of " + Suit[i];
+            }
+        }
+        
+        Scanner scan = new Scanner(System.in);
+        Scanner scanint = new Scanner(System.in);
+        
+        System.out.println("Would you like to draw a random card?");
+        String choice = scan.nextLine();
+        if (choice.equals("yes")){
+            int randsuit = (int)(Math.random() * (Suit.length-1));
+            int randrank = (int)(Math.random() * (Rank.length-1));
+            System.out.println(Deck[randsuit][randrank]);
+        }
+        
+        System.out.println("Would you like to draw a hand?");
+        String choice2 = scan.nextLine();
+        if (choice.equals("yes")){
+            System.out.println("How many cards would you like to draw?");
+            int size = scanint.nextInt();
+            String[] hand = new String[size];
+            for (int si = 0; si < hand.length; si++){
+                int randsuit = (int)(Math.random() * (Suit.length-1));
+                int randrank = (int)(Math.random() * (Rank.length-1));
+                hand[si] = Deck[randsuit][randrank];
+                List <String> handlist = Arrays.asList(hand);
+                if (handlist.contains(hand[si])){
+                    int randsuit2 = (int)(Math.random() * (Suit.length-1));
+                    int randrank2 = (int)(Math.random() * (Rank.length-1));
+                    hand[si] = Deck[randsuit2][randrank2];
+                }
+                System.out.println(hand[si]);
+            }
+        }
+    }
+}
